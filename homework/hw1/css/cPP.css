@@ -1,19 +1,29 @@
 body{
     background-color: black;
-    color:gray;
+    background-image:url("../img/background.jpeg");
+    color:white;
+    font-size:1.8em;
 }
 
-header, main, nav, footer{
+
+header, main, footer{
     text-align: center;
 }
-
-
+nav{
+    position:fixed;
+    text-align: center;
+    background-color:black;
+    /*margin="auto";*/
+    /*left:10%;*/
+    width:100%;
+}
 nav a {
     padding:15px;
     padding-bottom:4px;
     font-size: 1.8em;
     text-decoration: none;
     color: white;
+    
 }
 
 nav a:hover {
@@ -21,30 +31,47 @@ nav a:hover {
     font-size: 2em;
     transition: .9s;
 }
-
+a{
+    color:white;
+    text-decoration: underline;
+    
+}
 #me, #welcomeText{
-    float:left;
-    text-align: left;
+    margin:auto;
+    text-align: center;
 }
-#picCPlusPlus{
-    width:300px;
+#arrPic{
+    margin:auto;
+    width:750px;
 }
 
+#vecPic{
+    width:25%;
+}
 #forLink{
     color:orange;
 }
 #table-header{
     background-color: #351a00;
 }
+#loopPic{
+    width:330px;
+    margin:auto;
+}
 
 table{
     margin: 0px auto;
 }
 
-.hobby{
-    color:yellow;
+.category{
+    color:red;
 }
 
+.center{
+    display: block;
+    margin:auto;
+    width: 50%;
+}
 .table-row{
     background-color: #753900;
 }
@@ -54,14 +81,18 @@ ul{
 }
 footer{
     clear:left;
-    color:blue;
-    font-size:10px;
+    color:white;
+    font-size:15px;
     text-align:center;
 }
 
 
 table{
     margin: 0px auto;
+}
+
+h3{
+    text-shadow: 2px 2px #ff0000;
 }
 
 td{
@@ -75,4 +106,9 @@ td strong{
 
 #indexActive{
     text-decoration: underline;
+    color:red;
+}
+#logo{
+    width:50px;
+    margin:auto;
 }
