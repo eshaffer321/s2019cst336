@@ -1,0 +1,78 @@
+body{
+    background-color: black;
+    color:gray;
+}
+
+header, main, nav, footer{
+    text-align: center;
+}
+
+
+nav a {
+    padding:15px;
+    padding-bottom:4px;
+    font-size: 1.8em;
+    text-decoration: none;
+    color: white;
+}
+
+nav a:hover {
+    border-bottom:2px orange solid;
+    font-size: 2em;
+    transition: .9s;
+}
+
+#me, #welcomeText{
+    float:left;
+    text-align: left;
+}
+#picCPlusPlus{
+    width:300px;
+}
+
+#forLink{
+    color:orange;
+}
+#table-header{
+    background-color: #351a00;
+}
+
+table{
+    margin: 0px auto;
+}
+
+.hobby{
+    color:yellow;
+}
+
+.table-row{
+    background-color: #753900;
+}
+ul{
+    text-align: left;
+    padding-left: 200px;
+}
+footer{
+    clear:left;
+    color:blue;
+    font-size:10px;
+    text-align:center;
+}
+
+
+table{
+    margin: 0px auto;
+}
+
+td{
+    padding-right: 10px;
+    font-size: 1.3em;
+}
+
+td strong{
+    color: orange;
+}
+
+#indexActive{
+    text-decoration: underline;
+}
