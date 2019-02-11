@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> this is the title</title>
+        <script type="text/javascript">
+            function addBorder(){
+                document.getElementById("myImage").style.border = "solid 1px red";
+            }
+            function replaceHeaderContent(){
+                document.getElementById("headerContent").innerHTML = "Cool";
+            }
+            // function makeButton(){
+            //     var btn=
+            // }
+        </script>
+    </head>
+    <body>
+        <h3 onclick="addBorder()" id="headerContent">Click here to add a border to the image</h3>
+        <img id="myImage" src="myPic.jpeg" onclick="replaceHeaderContent()" />
+    </body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="eng">
+    <head>
+        <meta name="viewport" content="width=device-width">
+        <title>CSS position: sticky</title>
+        <link rel="stylesheet" href="main.css"/>
+        <style>
+            dl{/*  Dictionary List    */
+                margin-top: 100px;
+                margin-bottom: 100px;
+                margin-right: 150px;
+                margin-left: 80px;
+                background-color: cornflowerblue;
+                color: cornsilk;
+            }
+            dt{/*   Dictionary term also known as char   */
+                font-weight:900;
+                font-size: 1.5rem;%
+                line-height: 1.5;
+                padding: 0.25rem 1rem;
+                color: whitesmoke;
+                text-shadow: 1px 1px 1px rgba(0,0,0,0.8);
+                position: sticky;
+                top: 0.25rem;
+                /*how far away do you want to keep it from the top*/
+                /*position:fixed;*/
+                /* if position is fixed, it will stay where it is displayed on the screen regard of the scroll*/
+            }
+            dd{
+                font-size: 1.2rem;
+                border-top: 1px solid cornsilk;
+                padding: 0.25rem 2rem 0.25rem 4rem;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>CSS position: sticky</h1>
+        </header>
+        <main>
+            <dl>
+                <dt>A</dt>
+                <dd>Angular</dd>
+                <dd>AnyChart</dd>
+            </dl>
+            <dl>
+                <dt>B</dt>
+                <dd>Backbone</dd>
+                <dd>Bootsrap</dd>
+                <dd>Bowser</dd>
+            </dl>
+            <dl>
+                <dt>C</dt>
+                <dd>Cappuccino</dd>
+                <dd>Chai</dd>
+                <dd>Chaplin</dd>
+            </dl>
+            <dl>
+                <dt>D</dt>
+                <dd>Daniel</dd>
+                <dd>Dad</dd>
+                <dd>Devon</dd>
+            </dl>
+            <dl>
+                <dt>E</dt>
+                <dd>Esther</dd>
+                <dd>Ethen</dd>
+                <dd>Evergreeh</dd>
+            </dl>
+            <dl>
+                <dt>F</dt>
+                <dd>Fabian</dd>
+                <dd>Father</dd>
+                <dd>Fairyland</dd>
+            </dl>
+            <dl>
+                <dt>G</dt>
+                <dd>Galileo</dd>
+                <dd>Grandparents</dd>
+                <dd>Grandmother</dd>
+                <dd>Grandfather</dd>
+                <dd>Games</dd>
+                <dd>Gems</dd>
+                <dd>Garbage</dd>
+                <dd>Graveyard</dd>
+                <dd>Gift</dd>
+            </dl>
+        </main>
+    </body>
+</html>
