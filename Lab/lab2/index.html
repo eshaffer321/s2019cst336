@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Guess a Number </title>
+        <meta charset="utf-8" />
+        <script src="https://code.jquery.com/jquery.min.js"></script>
+        
+        <!--Bootstrap files-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        
+        <!--Custom Styles-->
+        <link href="css/styles.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+
+        <div class="jumbotron">
+            <h1 id="color">Guess a Number</h1>
+        </div>
+
+        <div id="directions" class="resultParas">
+            Guess a number between 1 and 99 in seven attempts!
+        
+            <br><br>
+            <label for="guessField">Enter a guess:</label>
+            <input type="text" id="guessField" class="guessField">
+        <input type="submit" value="Submit guess" class="guessSubmit">
+            
+            </br></br>
+            <p id="guesses"></p>
+            <p id="lastResult"></p>
+            <p id="lowOrHi"></p>
+            <button id='reset'>Reset</button>
+        </div>
+        
+        
+        <script>
+        
+        
+        //Your JavaScript goes here
+            var randomNumber = Math.floor(Math.random() * 99) +1;
+            var guesses = document.querySelector('#guesses');
+            var lastResult = document.querySelector('#lastResult');
+            var lowOrHi = document.querySelector('#lowOrHi');
+            
+            var guessSubmit = document.querySelector('.guessSubmit');
+            var guessField = document.querySelector('.guessField');
+            
+            var guessCount = 1;
+            var gamesWon = 0;
+            var gamesLost = 0;
+            var resetButton = document.querySelector('#reset');
+            resetButton.style.display = 'none';
+            guessField.focus();
+            
+            function checkGuess()
+            {
+                var userGuess = Number(guessField.value);
+                if(guessCount === 1){
+                    guesses.innerHTML = 'Previous guesses: ';
+                }
+                //guesses.innerHTML += guessCount + ' ';
+                guesses.innerHTML += userGuess + ' ';
+                if(userGuess > 99 || userGuess < 1){
+                    lastResult.innerHTML = 'Not valid (your attempt will not be affected)';
+                    lastResult.style.backgroundColor = 'red';
+                    console.log(' not valid');
+                    guessCount--;
+                }
+                else if(userGuess === randomNumber){
+                    lastResult.innerHTML = 'Congratulations! You got it right!';
+                    lastResult.style.backgroundColor = 'green';
+                    lastResult.innerHTML = 'Won games: ' + gamesWon + ' Lost games: ' + gamesLost;
+                    lowOrHi.innerHTML = '';
+                    gamesWon++;
+                    setGameOver();
+                }else if(guessCount === 7){
+                    lastResult.innerHTML = 'Sorry, you lost!';
+                    gamesLost++;
+                    lastResult.innerHTML = 'Won games: ' + gamesWon + ' Lost games: ' + gamesLost;
+                    setGameOver();
+                }else{
+                    lastResult.innerHTML = 'Wrong!';
+                    lastResult.style.backgroundColor = 'red';
+                    console.log(guessCount);
+                    if(userGuess < randomNumber){
+                        lowOrHi.innerHTML = 'Last guess was too low!';
+                    }else if(userGuess > randomNumber){
+                        lowOrHi.innerHTML = 'Last guess was too high!';
+                    }
+                }
+                guessCount++;
+                guessField.value = '';
+                guessField.focus();
+            }
+            resetButton.style.display = 'none';
+            
+            console.log(randomNumber);
+        
+        guessSubmit.addEventListener('click', checkGuess);
+        
+        function setGameOver(){
+            guessField.disabled = true;
+            guessSubmit.disabled = true;
+            resetButton.style.display = 'inline';
+            resetButton.addEventListener('click', resetGame);
+        }
+        
+        function resetGame(){
+            guessCount = 1;
+            
+            var resetParas = document.querySelectorAll('.resultParas p');
+            for(var i = 0; i < resetParas.length; i++){
+                resetParas[i].textContent = '';
+            }
+            
+            resetButton.style.display = 'none';
+            
+            guessField.disabled = false;
+            guessSubmit.disabled = false;
+            guessField.value = '';
+            guessField.focus();
+            
+            lastResult.style.backgroundColor = 'white';
+            
+            randomNumber = Math.floor(Math.random()*99)+1;
+        }
+        $("#color").css("color", "red");
+        $( "guesses" ).on( "mouseover", function() {
+        $( this ).css( "color", "red" );
+    });
+        </script>
+        <script SRC="js/functions.js"></script>
+    </body>
+</html>
