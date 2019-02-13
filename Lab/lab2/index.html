@@ -56,12 +56,13 @@
             function checkGuess()
             {
                 var userGuess = Number(guessField.value);
+                console.log("lol")
                 if(guessCount === 1){
                     guesses.innerHTML = 'Previous guesses: ';
                 }
                 //guesses.innerHTML += guessCount + ' ';
                 guesses.innerHTML += userGuess + ' ';
-                if(userGuess > 99 || userGuess < 1){
+                if(userGuess > 99 || userGuess < 1 || isNaN(userGuess)){
                     lastResult.innerHTML = 'Not valid (your attempt will not be affected)';
                     lastResult.style.backgroundColor = 'red';
                     console.log(' not valid');
@@ -126,9 +127,19 @@
             randomNumber = Math.floor(Math.random()*99)+1;
         }
         $("#color").css("color", "red");
-        $( "guesses" ).on( "mouseover", function() {
-        $( this ).css( "color", "red" );
-    });
+        // changed her to red
+        $( "#guesses" ).on( "mouseover", function() {
+            $( this ).css( "color", "red" );
+        });
+        // when mouse hovers over the previous guesses, it will turn red
+        $( "p" ).on( "click", function() {
+            $( this ).css( "background-color", "yellow" );
+        });
+        // when paragraphs are clicked, it will highlight yellow
+        $('#reset').css("background-color", "red");
+        //changed the reset button red
+        $('#reset').css({width:85,height:75});
+        //changed the height and width of the reset button
         </script>
         <script SRC="js/functions.js"></script>
     </body>
