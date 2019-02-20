@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Quiz</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <div id="title">Meme Quiz</div>
+        
+        <main>
+            <div id="start">
+                <div id="startText">Take Quiz</div>
+                <button id="startButton">Start</button>
+            </div>
+        </main>
+        
+        <div id="question">
+            <img src="#" id="questionImage"/>
+            <p id="questionText"></p>
+            <div id="buttons">
+                <button id="button1"></button>
+                <button id="button2"></button>
+                <button id="button3"></button>
+            </div>
+        </div>
+        
+        <div id="results">
+            <img src="#" id="resultsImg"/>
+            <div id="resultsText">Results: </div>
+            <button id="resetButton">Reset</button>
+        </div>
+        
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script type="text/javascript">
+        
+        var startButton = document.getElementById("startButton");
+        var gameInfo = [ {img:"img/Harambe.jpg", question:"Who's this guy?", choice1:"Hareembae", choice2:"Harambe", choice3:"Hamhambae", answer:"button2"},
+                     {img:"img/redHead.jpg", question:"Cash me outside...?", choice1:"How is it?", choice2:"Howbow dah?", choice3:"What's the weather like?", answer:"button2"},
+                     {img:"img/saltBae.jpg", question:"Who's that bae?", choice1:"Sweet Bae", choice2:"Sprinkle Bae", choice3:"Salt Bae", answer:"button3"},
+                     {img:"img/daniel.jpg", question:"Who dat?", choice1:"Damn Daniel", choice2:"God Dammit", choice3:"Darn Daniel", answer:"button1"},
+                     {img:"img/lying.jpg", question:"Hmmmm....", choice1:"Why you always crying?", choice2:"Why?", choice3:"Why you always lying?", answer:"button3"},
+                     {img:"img/yeahBoi.jpg", question:"What is this boiii saying?", choice1:"Bananas", choice2:"Yeah Boii", choice3:"Nail clippers", answer:"button2"}
+        ];
+        var SIZE = 6;
+        var q;
+        var score;
+        
+        $(document).ready(function(){
+            $('#results').hide();
+            $('#question').hide();
+        });
+        
+        $("#startButton").click(function(){
+            $("main").empty();
+            $( "#question").appendTo( "main" );
+            q = -1;
+            score = 0;
+            setGame();
+        });
+        
+        function setGame(){
+            
+            q++;
+            if(q === SIZE){
+                results();
+                return;
+            }
+            
+            $('#question').show();
+            $("#questionImage").attr("src",gameInfo[q].img);
+            $("#questionText").text(gameInfo[q].question);
+            $("#button1").html(gameInfo[q].choice1);
+            $("#button2").html(gameInfo[q].choice2);
+            $("#button3").html(gameInfo[q].choice3);
+        }
+        
+        $('#button1, #button2, #button3').click(function () {
+            if (this.id == gameInfo[q].answer){
+                $('main').css("background-color", "green");
+                $('#questionImage').attr("src","img/right.png");
+                score++;
+            }
+            else{
+                $('main').css("background-color", "red");
+                $('#questionImage').attr("src","img/wrong.png");
+            }
+            
+            setTimeout(function() {
+                setGame();
+                $('main').css("background-color", "white");
+                }, 1100);
+        });
+        
+        function results(){
+            $("main").empty();
+            $('#results').show();
+            $("#results").appendTo( "main" );
+            var total = score/SIZE*100
+            $("#resultsText").text("Results: " + total + "%");
+            
+            if(total === 100)
+                $("#resultsImg").attr("src","img/winner.gif");
+            else
+                $("#resultsImg").attr("src","img/loser.jpg");
+        }
+        
+        $("#resetButton").click(function() {
+            location.reload();
+        });
+        
+    </script>
+    </body>
+</html>
