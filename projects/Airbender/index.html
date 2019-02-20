@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Avatar Quiz</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <div id="title">What bender are you?</div>
+        <div id="container">
+            <questions>
+                <div class="textCotainer">Type your avatar name</div>
+                <input type="text" id="name">
+                
+                <div class="textCotainer">Click what draws your attention</div>
+                <img src="img/tornado.jpeg"></img>
+                <label for="tornado"></label>
+                <input type="button" name ="picture" value="Tornado" id="tornado">
+                
+                <img src="img/landscape.jpeg"></img>
+                <label for="landscape"></label>
+                <input type="button" name ="picture" value="Landscape" id="landscape">
+                
+                <img src="img/ocean.jpeg"></img>
+                <label for="ocean"></label>
+                <input type="button" name ="picture" value="Ocean" id="ocean">
+                
+                <img src="img/volcano.jpeg"></img>
+                <label for="volcano"></label>
+                <input type="button" name ="picture" value="Volcano" id="volcano">
+                
+                <div class="textCotainer">Favortie color</div>
+                <label for="color">Select:</label>
+                <input type="color" name="favColor" value="#ff0000">
+                <br><br>
+                    <input type="submit"></input>
+                
+                <div class="textCotainer">Select what you think you are.</div>
+                
+                <input type="checkbox" name="Earth bender" id="earth bender">
+                <label for="earth bender">Earth bender</label>
+                <input type="checkbox" name="fire bender" id="fire bender">
+                <label for="fire bender">Fire bender</label>
+                <input type="checkbox" name="honest" id="air bender">
+                <label for="air bender">Air bender</label><br>
+                <input type="checkbox" name="intelligent" id="water bender">
+                <label for="water bender">Water bender</label>
+                
+                <div class="textCotainer">Do you prefer to be in an air balloon or kayaking?</div>
+                <input type="radio" name="problem" id="air" value="air">
+                <label for="air">Rifting Duh!</label>
+                
+                <input type="radio" name="problem" id="fire" value="fire">
+                <label for="fire">Champagne and the view!</label><br>
+                
+                
+                
+                
+                <div class="textCotainer">Revenge is...</div>
+                <input type="radio" name="revenge" id="fire" value="fire">
+                <label for="fire">The easy way out, but also destructive.</label>
+                
+                <input type="radio" name="revenge" id="water" value="water">
+                <label for="water">Painful, yet tempting.</label><br>
+                
+                <input type="radio" name="revenge" id="earth" value="earth">
+                <label for="earth">Useless. I keep moving forward.</label>
+                
+                <input type="radio" name="revenge" id="air" value="air">
+                <label for="air">Not worth losing yourself.</label>
+                
+                
+                
+                
+                <div class="textCotainer"></div>
+                <select>
+                    <option value="Katara">Katara</option>
+                    <option value="Zuko">Zuko</option>
+                    <option value="Toph">Toph</option>
+                    <option value="Momo">Momo</option>
+                </select>
+                
+                <button id="submit">Submit</button>
+            </questions>
+            
+        </div>
+        <div id="results">
+            <img src="" id="matchImg"/>
+            <div id="resultsName"></div>
+            <!--<button id="resetButton">Reset</button>-->
+        </div>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script type="text/javascript">
+        
+            var name;
+            var feet;
+            var inches;
+            var match;
+            var earthBender=0;
+            var waterBender=0;
+            var fireBender=0;
+            var airBender=0;
+            var benders =  [{name: "air", img:"img/air.jpeg"},
+                            {name: "fire", img:"img/fire.jpeg"},
+                            {name: "earth", img:"img/earth.jpeg"},
+                            {name: "water", img:"img/water.jpeg"}
+                               ];
+            
+            $( "#submit" ).click(function() {
+                name = document.getElementById('name').value;
+                value= $('input[name="picture"]:checked').val();
+                console.log(name);
+                switch(value){
+                    case "earth":
+                        earthBender++;
+                        break;
+                    case "water":
+                        waterBender++;
+                        break;
+                    case "fire":
+                        fireBender++;
+                        break;
+                    case "air":
+                        airBender++;
+                        break;
+                }
+            if(earthBender > waterBender && earthBender > fireBender && earthBender > airBender){
+                match = benders[2];
+            }
+            else if(waterBender > earthBender && waterBender > fireBender && waterBender > airBender){
+                match = benders[3];
+            }
+            else if(fireBender > earthBender && fireBender > waterBender && fireBender > airBender){
+                match = benders[1];
+            }
+            else if(airBender > earthBender && airBender > waterBender && airBender > fireBender){
+                match = benders[0];
+            }
+            else{
+                match = benders[Math.floor(Math.random() * 3)];
+            }
+                    
+                
+                $("#matchImg").attr("src", match.img);
+                $("#resultsName").html(name + " is a " + match.name + "!!!");
+                $("#container").empty();
+                $("#results").show();
+                $("#results").appendTo("#container");
+            });
+            
+        </script>
+    </body>
+</html>
