@@ -38,7 +38,7 @@
     $("#zip").change(function(){
       $.ajax({
         type: "get",
-        url: "http://itcdland.csumb.edu/~milara/ajax/cityInfoByZip.php?zip=93955",
+        url: "http://itcdland.csumb.edu/~milara/ajax/cityInfoByZip.php?",
         dataType: "json",
         data: {
           "zip" : $("#zip").val()
@@ -116,6 +116,7 @@
       else if( $("#pw1").val() != $("#pw2").val())
         $("#error").text("The passwords do not match");
       else{
+        $("#error").text("Account was made");
         usernames.push($("#username").val());
         $('input').val('');
         $('option').attr('selected', false);
