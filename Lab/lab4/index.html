@@ -1,0 +1,132 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>AJAX: Sign Up Page</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+  <h1> Sign Up Form </h1>
+
+  <container>
+    <fieldset>
+      <legend>Sign Up</legend>
+      <div><label>First Name:</label><input type="text"></div>
+      <div><label>Last Name:</label><input type="text"></div>
+      <div><label>Email:</label><input type="text"></div>
+      <div><label>Phone Number:</label><input type="text"></div>
+      <div><label>Zip Code:</label><input type="text" id="zip"><div id="failMessage"></div></div>
+      <div id="city"><label>City:</label></div>
+      <div id="latitude"><label>Latitude:</label></div>
+      <div id="longitude"><label>Longitude:</label></div>
+      <div><label>State:</label><input type="text" id="state"></div>
+      <div><label>Select a County:</label><select id="county"></select></div>
+      <div><label>Desired Username:</label><input type="text" id="username"></div>
+      <div id="usernameValid"></div>
+      <div><label>Password:</label><input type="password" id="pw1"></div>
+      <div><label>Type Password Again:</label><input type="password" id="pw2"></div>
+      <button>Submit</button>
+      <div id="error"></div>
+    </fieldset>
+  </container>
+  
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script>
+  
+    var usernames = [];
+  
+    $("#zip").change(function(){
+      $.ajax({
+        type: "get",
+        url: "http://itcdland.csumb.edu/~milara/ajax/cityInfoByZip.php?zip=93955",
+        dataType: "json",
+        data: {
+          "zip" : $("#zip").val()
+        },
+        success: function(data,status) {
+          
+          if(!data){
+            failZip();
+            return;
+          }
+          
+          $("#failMessage").text("");
+          $("#city").text("City: " + data.city);
+          $("#latitude").text("Latitude: " + data[5]);
+          $("#longitude").text("Longitude: " + data[6]);
+          $("#state").val(data.state); 
+          
+          getCounty(data.state);
+        },
+        error: function(err) {
+          failZip();
+        }
+      });
+    });
+    
+    function failZip(){
+      $("#failMessage").text("Zip Not Valid");  
+      $("#city").text("City:");
+      $("#latitude").text("Latitude: ");
+      $("#longitude").text("Longitude: ");
+      $("#state").val(""); 
+      $("#county").val([]);
+    }
+    
+    function getCounty(state){
+      
+      $.ajax({
+        type: "get",
+        url: "http://itcdland.csumb.edu/~milara/ajax/countyList.php?",
+        dataType: "json",
+        data: {
+          "state" : state
+        },
+        success: function(data,status) {
+          
+          for (var i=0; i<data.length; i++) {
+            $('#county').append($('<option>', {value:1, text: data[i].county}));
+          }
+        }
+      });
+    }
+    
+    $( "#username" ).keyup(function() {
+      var temp = $("#username").val();
+      
+      if(usernames.includes(temp)){
+        $("#usernameValid").text("Username taken");
+        $("#usernameValid").text("Username is not valid");
+        $("#usernameValid").css("color", "red");
+      }
+      else if(temp.length < 1){
+        $("#usernameValid").text("Username is not valid");
+        $("#usernameValid").css("color", "red");
+      }
+      else{
+        $("#usernameValid").text("Username is valid");
+        $("#usernameValid").css("color", "green");
+      }
+    });
+     
+    $("button").click(function(){
+      console.log($("#usernameValid").css("color"));
+      if($("#usernameValid").css("color") != "rgb(0, 128, 0)")
+        $("#error").text("The username has to be valid");
+      else if( $("#pw1").val() != $("#pw2").val())
+        $("#error").text("The passwords do not match");
+      else{
+        usernames.push($("#username").val());
+        $('input').val('');
+        $('option').attr('selected', false);
+        $("#city").text("City:");
+        $("#latitude").text("Latitude: ");
+        $("#longitude").text("Longitude: ");
+        $("#usernameValid").text("");
+        $("#failMessage").text(""); 
+      }
+    });
+  </script>
+</body>
+
+</html>
