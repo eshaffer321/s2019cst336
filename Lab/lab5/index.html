@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> </title>
+    </head>
+    <body>
+        <p>Username: </p>
+        <input type="text" name="userName" id="userName"><br>
+        <div id="usernameError"></div>
+        <p>Password:</p><input type="password" name="password" id="password"><br>
+        <div id="suggestPassword"></div>
+        <div id="passwordError"></div>
+        <button id="button">button</button>
+        <div id="accountMade"></div>
+        
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script>
+        console.log("in script")
+        $(document).ready(function(e) {
+             console.log("on ready")
+            $.ajax({
+                type: "get",
+                url: "/Lab/lab5/server.php",
+                dataType: "json",
+                data: {},
+                success: function(data) {
+                    $("#suggestPassword").html("Suggested Password: " + data);
+                },
+                error: function(err) {
+                    console.log(arguments);  
+                },
+                complete: function(data, status) { //optional, used for debugging purposes
+                    //console.log(status);
+                }
+            });
+        });
+        
+        $("#button").click(function(){
+            
+            $.ajax({
+            type: "POST",
+            url: "/Labs/lab5/server.php",
+            dataType: "json",
+            data: {
+                userName : $('#userName').val(),
+                password : $('#password').val()
+            },
+            success: function (data) {
+               
+               if(!data.validUsername){
+                   $("#usernameError").html("Username is taken");
+                   $("#accountMade").html("");
+                   $("#accountMade").html("");
+               }
+               
+               if(!data.validPassword){
+                   $("#passwordError").html("Password is invalid");
+               }
+                 
+                if(data.validUsername && data.validPassword){
+                    $("#accountMade").html("Account made");
+                    $("#usernameError").html("");
+                    $("#passwordError").html("");
+                }
+            },
+            error: function () {
+             alert('Error');
+            }
+        });
+        });
+
+        
+    </script>
+
+    </body>
+</html>
