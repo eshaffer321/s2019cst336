@@ -1,0 +1,135 @@
+body{
+    margin: 0px;
+    background-size: cover;
+	color: white;
+    background-image: url("../img/background.jpg");
+}
+
+#container{
+    display: flex;
+    width: 1200px;
+    display: block;
+    margin: 0px auto;
+}
+
+#nav{
+    background-color: black;
+    width: 100%;
+    margin: 0px;
+}
+
+ul {
+  list-style-type: none;
+  display: flex;
+  overflow: hidden;
+  margin-top: 0px;
+}
+
+li {
+  flex-grow: 1;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  font-size: 1.8em;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: LightGray;
+}
+
+.active {
+  background-color: gray;
+}
+
+#name{
+    flex-grow: 8;
+    text-align: center;
+    font-size: 3em;
+    color: white;
+}
+
+#introMessage{
+	margin-top: 150px;
+	line-height: 50px;
+    color: white;
+    font-size: 2em;
+    width: 50%;
+    flex-direction: column;
+	float: right;
+}
+
+#porfolioPic{
+	margin-top: 100px;
+	border-radius: 100px;
+    width: 500px;
+}
+
+#technologies{
+	display: flex;
+}
+
+.title{
+	text-align: center;
+	font-size: 2em;
+	padding-top: 20px;
+}
+
+.box{
+	display: flex;
+	background-color: black;
+}
+
+.box img{
+	height: 350px;
+}
+
+.mainLeadershipTitle{
+	text-align: center;
+	font-size: 1.5em;
+	color: yellow;
+	padding-top: 20px;
+	padding-bottom: 10px;
+}
+
+.projectTitle{
+	text-align: center;
+	font-size: 1.5em;
+	color: yellow;
+	padding-bottom: 10px;
+}
+.leadershipText{
+	font-size: 1.5em;
+	padding: 20px;
+	line-height: 50px;
+	background-color: black;
+}
+
+.project{
+	display: flex;
+}
+
+#projectID{
+	height: 180px;
+	padding: 20px;
+}
+
+.project{
+	background-color: black;
+	margin-bottom: 20px;
+}
+
+.projectText{
+	font-size: 1.5em;
+	color: white;
+	padding: 20px;
+}
+
+fieldset{
+    background-color: black;
+    margin-bottom:50px;
+}
