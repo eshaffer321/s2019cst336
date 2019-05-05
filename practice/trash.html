@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Quiz</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <div id="title">What bender are you?</div>
+        
+        <main>
+            <div id="start">
+                <div id="startText">Take Quiz</div>
+                <button id="startButton">Start</button>
+            </div>
+        </main>
+        
+        <div id="question">
+            <img src="#" id="questionImage"/>
+            <p id="questionText"></p>
+            <div id="buttons">
+                <button id="button1"></button>
+                <button id="button2"></button>
+                <button id="button3"></button>
+                <button id="button4"></button>
+            </div>
+        </div>
+        
+        <div id="results">
+            <img src="#" id="resultsImg"/>
+            <div id="resultsText">Results: </div>
+            <button id="resetButton">Reset</button>
+        </div>
+        
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script type="text/javascript">
+        
+        
+        
+        
+                <div id="container">
+            <form>
+                <div class="textCotainer">What's the first thing that caught your attention? </div>
+                <img src="img/tornado.jpeg"></img>
+                <img src="img/volcano.jpeg"></img>
+                <img src="img/landscape.jpeg"></img>
+                <img src="img/ocean.jpeg"></img>
+                <button onclick="air()">Tornado</button>
+                <button onclick="fire()">Volcano</button>
+                <button onclick="earth()">landscape</button>
+                <button onclick="water()">ocean</button>
+                // <input type="text" id="name" value="name">
+                
+                <div class="textCotainer">Height</div>
+                
+                <label for="feet">Feet</label>
+                <input type="number" name="feet" min="0" max="6">
+                <label for="inches">Inches</label>
+                <input type="number" name="inches" min="0" max="11">
+//third               
+                <div class="textCotainer">Select all that apply</div>
+                <div id="checkBox">
+                    <input type="checkbox" name="funny" id="funny">
+                    <label for="funny">Funny</label>
+                    <input type="checkbox" name="hot" id="hot">
+                    <label for="hot">Hot</label>
+                    <input type="checkbox" name="honest" id="honest">
+                    <label for="honest">Honest</label>
+                    <input type="checkbox" name="intelligent" id="intelligent">
+                    <label for="intelligent">Intelligent</label>
+                    <input type="checkbox" name="friendly" id="friendly">
+                    <label for="friendly">Friendly</label>
+                    <input type="checkbox" name="clean" id="clean">
+                    <label for="clean">Clean</label>
+                </div>
+                
+//fourth
+                <div class="textCotainer">How do you deal with a serious problem?</div>
+                <input type="radio" name="problem" id="kry" value="kry">
+                <label for="kry">Kry</label>
+                <input type="radio" name="problem" id="joke" value="joke">
+                <label for="joke">Joke about it</label>
+                <input type="radio" name="problem" id="deal" value="deal">
+                <label for="deal">Deal with it</label>
+                <input type="radio" name="problem" id="discuss" value="discuss">
+                <label for="discuss">Diskuss it with my family</label>
+ //fifth               
+                <div class="textCotainer">How do you reach to failure?</div>
+                <input type="radio" name="failure" id="again" value="again">
+                <label for="again">What is failure again?</label>
+                <input type="radio" name="failure" id="whatever" value="whatever">
+                <label for="whatever">Whatever, it happens</label>
+                <input type="radio" name="failure" id="option" value="option">
+                <label for="option">Failure isn't an option</label>
+                <input type="radio" name="failure" id="stroger" value="stroger">
+                <label for="stroger">Failure makes you stroger</label>
+//last
+                <div class="textCotainer">Who is your favorite kardashian?</div>
+                <select>
+                    <option value="kim">Kim</option>
+                    <option value="kendall">Kendall</option>
+                    <option value="khloe">Khloe</option>
+                    <option value="kylie">Kylie</option>
+                    <option value="kourtney">Kourtney</option>
+                </select>
+            </form>
+            
+        </div>
+        
+        
+        
+        
+        
+        // var startButton = document.getElementById("startButton");
+        // //buttons, read text, bubble choices,       text, checkbox, radio, select, number, submit,
+        // var gameInfo = [ {img:"img/Harambe.jpg", question:"What's the first thing that drew your attention?", choice1:"Ocean", choice2:"Landscape", choice3:"tornado", choice4:"volcano", answer:"button2"},
+        //              {img:"img/redHead.jpg", question:"Do you see yourself in a hot air balloon or kayaking?", choice1:"How is it?", choice2:"Howbow dah?", choice3:"What's the weather like?", answer:"button2"},
+        //              {img:"img/saltBae.jpg", question:"Who's that bae?", choice1:"Sweet Bae", choice2:"Sprinkle Bae", choice3:"Salt Bae", answer:"button3"},//depending on choice next is yes no question
+        //              //scuba diving, sky diving, climbing on the mountain, fire performace
+        //              {img:"img/daniel.jpg", question:"Who dat?", choice1:"Damn Daniel", choice2:"God Dammit", choice3:"Darn Daniel", answer:"button1"},//
+        //              {img:"img/lying.jpg", question:"Hmmmm....", choice1:"Why you always crying?", choice2:"Why?", choice3:"Why you always lying?", answer:"button3"},
+        //              {img:"img/yeahBoi.jpg", question:"What is this boiii saying?", choice1:"Bananas", choice2:"Yeah Boii", choice3:"Nail clippers", answer:"button2"}
+        // ];
+        
+        var SIZE = 6;
+        var q;
+        var score;
+        var earth;
+        var fire;
+        var air;
+        var wind;
+        
+        $(document).ready(function(){
+            $('#results').hide();
+            $('#question').hide();
+        });
+        
+        $("#startButton").click(function(){
+            $("main").empty();
+            $( "#question").appendTo( "main" );
+            q = -1;
+            score = 0;
+            setGame();
+        });
+        
+        // function setGame(){
+            
+        //     q++;
+        //     if(q === SIZE){
+        //         results();
+        //         return;
+        //     }
+            
+            // $('#question').show();
+            // $("#questionImage").attr("src",gameInfo[q].img);
+            // $("#questionText").text(gameInfo[q].question);
+            // $("#button1").html(gameInfo[q].choice1);
+            // $("#button2").html(gameInfo[q].choice2);
+            // $("#button3").html(gameInfo[q].choice3);
+            // $("#button4").html(gameInfo[q].choice4);
+        }
+        
+        $('#button1, #button2, #button3, #button4').click(function () {
+            if (this.id == gameInfo[q].answer){
+                $('main').css("background-color", "green");
+                $('#questionImage').attr("src","img/right.png");
+                score++;
+            }
+            else{
+                $('main').css("background-color", "red");
+                $('#questionImage').attr("src","img/wrong.png");
+            }
+            
+            setTimeout(function() {
+                setGame();
+                $('main').css("background-color", "white");
+                }, 1100);
+        });
+        
+        function results(){
+            $("main").empty();
+            $('#results').show();
+            $("#results").appendTo( "main" );
+            var total = score/SIZE*100
+            $("#resultsText").text("Results: " + total + "%");
+            
+            if(total === 100)
+                $("#resultsImg").attr("src","img/winner.gif");
+            else
+                $("#resultsImg").attr("src","img/loser.jpg");
+        }
+        
+        $("#resetButton").click(function() {
+            location.reload();
+        });
+        
+    </script>
+    </body>
+</html>

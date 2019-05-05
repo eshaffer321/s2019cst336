@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Practice 5: Like/Dislike Video App</title>
+  <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+</head>
+<body>
+
+  <!--Embed here any YouTube video using the "iframe" tag -->
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/zpWYQ1YtgnI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  
+  <button id="like">
+    <img src="img/like.png" id="likeImg" alt="Like button" width="35" />
+  </button>
+  
+  <!--The number of likes is displayed within the span below-->
+  <span id="NumOfLikes"></span>
+  
+  
+  <button id="dislikes">
+    <img src="img/dislike.png" id="dislikeImg" alt="Dislike button" width="35" />
+  </button>
+  
+  <span id="NumOfdislikes"></span>
+  
+  
+</body>
+<script>
+
+  //This AJAX call returns a number of "likes" and "dislikes"
+  //Enter a YouTube video id for "data".
+	$.ajax({
+            type: "get",
+            url:  "https://cst336.herokuapp.com/projects/api/videoLikesAPI.php",
+            dataType: "json",
+            data: { 
+              "videoId": "zpWYQ1YtgnI"
+            },  //   <----AS THE VALUE, ENTER THE YOUTUBE VIDEO ID
+            
+            success: function(data,status) {
+                console.log(data);
+                
+                 $("#NumOfLikes").html(data.likes);
+                 $("#NumOfdislikes").html(data.dislikes);
+              },
+              complete: function(data,status) { 
+                  //alert(status);
+              }
+         });
+         
+  function ajaxCall(action){
+    $.ajax({
+            type: "get",
+            url:  "https://cst336.herokuapp.com/projects/api/videoLikesAPI.php",
+            dataType: "json",
+            data: { 
+              "videoId": "zpWYQ1YtgnI",
+              "action" : action
+            },  //   <----AS THE VALUE, ENTER THE YOUTUBE VIDEO ID
+            
+            success: function(data,status) {
+                console.log(data);
+                
+                 $("#NumOfLikes").html(data.likes);
+                 $("#NumOfdislikes").html(data.dislikes);
+              },
+              complete: function(data,status) { 
+                  //alert(status);
+              }
+         });
+  }
+  
+         
+  $( "#like" ).click(function() {
+    ajaxCall("like");
+    $("#likeImg").attr("src","img/cancel_like.png");
+    
+  });
+  
+  $( "#dislikes" ).click(function() {
+    ajaxCall("dislike");
+    $("#dislikeImg").attr("src","img/cancel_dislike.png");
+  });
+	
+	  
+</script>
+</html>

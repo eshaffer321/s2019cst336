@@ -1,0 +1,6 @@
+[28-Apr-2019 01:26:03 UTC] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[HY000] [1049] Unknown database 'lab8'' in /home/ubuntu/workspace/Lab/lab8/dbConnection.php:10
+Stack trace:
+#0 /home/ubuntu/workspace/Lab/lab8/dbConnection.php(10): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 /home/ubuntu/workspace/Lab/lab8/api/api.php(5): getDatabaseConnection('lab8')
+#2 {main}
+  thrown in /home/ubuntu/workspace/Lab/lab8/dbConnection.php on line 10

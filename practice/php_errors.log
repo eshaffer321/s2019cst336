@@ -1,0 +1,7 @@
+[26-Feb-2019 00:51:00 UTC] PHP Parse error:  syntax error, unexpected '++' (T_INC), expecting ')' in /home/ubuntu/workspace/practice/php/basic.php on line 21
+[26-Feb-2019 00:51:49 UTC] PHP Parse error:  syntax error, unexpected '}' in /home/ubuntu/workspace/practice/php/basic.php on line 28
+[15-Apr-2019 23:59:56 UTC] PHP Parse error:  syntax error, unexpected 'GET' (T_STRING) in /home/ubuntu/workspace/practice/curl/spotify.php on line 20
+[16-Apr-2019 00:02:07 UTC] PHP Parse error:  syntax error, unexpected '"Accept: application/json"' (T_CONSTANT_ENCAPSED_STRING) in /home/ubuntu/workspace/practice/curl/spotify.php on line 20
+[16-Apr-2019 00:05:18 UTC] PHP Fatal error:  Cannot use object of type stdClass as array in /home/ubuntu/workspace/practice/curl/spotify.php on line 62
+[16-Apr-2019 00:05:18 UTC] PHP Stack trace:
+[16-Apr-2019 00:05:18 UTC] PHP   1. {main}() /home/ubuntu/workspace/practice/curl/spotify.php:0

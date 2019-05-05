@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> </title>
+    </head>
+    <body>
+        <h2>Weekdays:</h2>
+        <h3>Monday</h3>
+        <h3>Tuesday</h3>
+        <h2>Weekends:</h2>
+        <h3>Saturday</h3>
+        <h3>Sunday</h3>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	    
+	    <div id="box" style="width:100px; height:100px; background:red; position:absolute;"></div>
+	    
+	    <script>
+	       $("document").ready(function(){
+	       //     $("h2").css("color", "red");
+	       //     $("h3:first").html("Today is Monday");
+	       //     $("h2").click(function(){
+	       //         $(this).css("border", "solid 2px");
+	       //     });
+	       //     //$("#weekday").css("color", "red");
+	       //     //$(".smallFont").css("color", "red");
+	       //     console.log("document is ready!");
+	       // });
+                $('#box').click(function(){
+                    var cssLeft = $('#box').css("left");
+                    
+	                $('#box').animate({  left:'250px'  });
+	                
+	                setTimeout(function(){
+	                    $('#box').animate({ left: cssLeft })
+	                }, 2000);
+	                });
+	            });
+	    </script>
+    </body>
+</html>

@@ -1,0 +1,13 @@
+#info {
+  display: flex;
+  position: sticky;
+}
+
+#box{
+  display: flex;
+}
+
+img{
+  margin-right: 20px;
+  margin-left: 20px;
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> </title>
+    </head>
+    <body>
+<form>
+    
+    <label for="fullName">Name</label>
+    <input type="text" id="fullName" name="fullName" size="25" />
+    <div class="input-group">
+        <label for="feedback">Feedback</label>
+        <br />
+        <textarea id="feedback" cols="30" rows="3"></textarea>
+    </div>
+    <div class="input-group">
+        <label for="state">State</label>
+        <br />
+        <select id="state">
+        <option value="CA">California</option>
+        <option value="AZ">Arizona</option>
+        <option value="IL">Illinois</option>
+    </select>
+    </div>
+    <div class="input-group">
+        <label for="feedback">Highest Degree Obtained</label>
+        <br />
+        <input type="radio" id="item1" name="degreeChoices" value="High School">
+        <label for="item1">High School Diploma</label>
+        <br />
+        <input type="radio" id="item2" name="degreeChoices" value="College">
+        <label for="item2">College</label>
+    </div>
+    <div class="input-group">
+        Sports I like:
+        <br />
+        <input type="checkbox" id="basket" name="sports" value="basket">
+        <label for="basket"> Basketball </label>
+        <br />
+        <input type="checkbox" id="soccer" name="sports" value="basket">
+        <label for="soccer"> Soccer </label>
+    </div>
+    <div class="input-group">
+        <input type="button" value="Submit" onclick="displayData()" />
+    </div>
+    
+</form>
+    </body>
+</html>

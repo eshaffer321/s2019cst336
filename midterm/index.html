@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> Match @ Cinder </title>
+        <link href="css/styles.css" rel="stylesheet" type="text/css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script>
+            $var = 1;
+            $(document).ready(function(){
+                
+                $.ajax({
+                    type:"GET",
+                    url:"api/getUsers.php",
+                    dataType: "json",
+                    success: function(data, status){
+                        $("#results").html("");
+                        $("#results").append("<img src='" + data[$var]['picture_url'] + "' align='left' width='200' /> <br />");
+                        $("#results").append(" About @" + data[$var]['username'] + data[$var]['about_me'] + "align='right'<br/>");
+                    }
+                });
+                
+                $("#button1").on("click", function(){
+                    $.ajax({
+                        type:"GET",
+                        url:"api/getUsers.php",
+                        dataType: "json",
+                        success: function(data, status){
+                            
+                                data.forEach(function(key) {
+                                    if('id' == $var){
+                                        $("#results").append("<img src='" + data[$var]['picture_url'] + "' width='200' /> <br />");
+                                        $("#results").append(" About @" + data[$var]['username'] + data[$var]['about_me'] + "<br/>");
+                                    }
+                            });
+                        }
+        
+                    });
+
+                });
+                
+            }); // End of doc.ready()
+        </script>
+    </head>
+    
+    <body>
+        <div>
+            <h1>Match</h1>
+        <form>
+            
+        </form>
+        </div>
+        
+        <div id="results"></div>
+        
+        <button id="button1">
+            <img src="img/dislike.png" alt="Dislike button" width="20" />
+        </button>
+        
+        <button type="button" id="button2" alt="Question Button"> ? </button>
+        
+        <button id="button3">
+            <img src="img/like.png" alt="Like button" width="20" />
+        </button>
+        
+    </body>
+    <script>
+        $( "#button1" ).click(function() {
+            $var +=1;
+            
+    
+        });
+        
+        $( "#button2" ).click(function() {
+            $var +=1;
+            console.log($var);
+    
+        });
+        
+        $( "#button3" ).click(function() {
+            $var +=1;
+            console.log($var);
+    
+        });
+  
+    </script>
+</html>

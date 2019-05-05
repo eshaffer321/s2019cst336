@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <style>
+    
+    #map {
+      height: 500px;
+      width: 1000px;
+    }
+    
+    </style>
+  </head>
+  <body>
+    
+    <div id="locations">
+      <label for="origin">Origin</label>
+      <input class="form-control" id="origin" type="text" placeholder="Current Location">
+      <br>
+      <input type="checkbox" name="useCurrentLocation" id="useCurrentLocation" value="true" onclick="useCurrentLocationClicked()">
+      <label for="useCurrentLocation">Use Current Location</label>
+      <br>
+      <label for="destination">Destination</label>
+      <input class="form-control" id="destination" type="text" placeholder="Search">
+      <br>
+      <button id="submit">submit</button>
+    </div>
+    
+    <div id="map"></div>
+  
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0vzljkSDp7Hk3CWIytTfZJEM8jS-UooU&callback=initMap&libraries=places"
+    async defer>
+    </script>
+    <script type="text/javascript" src="javascript/googleMapsCode.js"></script>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+$host = '0.0.0.0';
+$dbname = 'ottermart';
+$username = 'jahenderson';
+$password = '';
+
+$dbConn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+$dbConn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
+$sql = "
+SELECT 	AVG(quantity) AS quantityAverage, SUM(quantity) AS quantitySum, ompd.productName, ompd.productId
+FROM 	`om_purchase` omp INNER JOIN
+	      `om_product` ompd ON omp.productId = ompd.productId 
+	WHERE omp.productId = :id
+GROUP BY ompd.productName, ompd.productId
+";
+$stmt = $dbConn -> prepare ($sql);
+$stmt -> execute (  array ( ':id' => '42')  );
+
+// while ($row = $stmt -> fetch())  {
+//   echo  $row['field1_name'] . ", " . $row['field2_name'];
+// }
+
+$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$results = array("aggregates" => $rows);
+
+// Sending back down as JSON
+echo json_encode($results);
